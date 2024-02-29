@@ -17,3 +17,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.mainHeader {
+  height: 50px;
+  display: flex;
+  background-color: rebeccapurple;
+}

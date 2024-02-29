@@ -1,11 +1,20 @@
 doctype html
-html(lang="en")
+html(lang="ko")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta( name='viewport', content='width=device-width, initial-scale=1')
     title= title
+    link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.2/css/all.css", integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu", crossorigin="anonymous")
     link(rel='stylesheet', href='/css/main.css')
     script(src="/js/main.js")
+
   body
+    header.mainHeader
+      a.returnMain
+        i.fa.fa-chevron-left
+      div.layoutHead
+        p= title
     block content
+    footer.ad
+      div.ad_box ad
