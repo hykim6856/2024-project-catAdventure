@@ -26,3 +26,7 @@ npm install uuid
 
 - dependency 설치: `npm install express-session`
 - `app.js`에 session 설정
+
+### 피그마를 이용한 서비스 기획
+
+- https://www.figma.com/file/ens9uW7R0eTWt0OERGUa15/%EA%B3%A0%EC%96%91%EC%9D%B4-%EB%8C%80%EB%AA%A8%ED%97%98?type=design&node-id=0%3A1&mode=design&t=wDWWZwURvb2qrS5J-1
