@@ -22,7 +22,7 @@ import DB from "../models/index.js";
 // import router modules
 import indexRouter from "../routes/index.js";
 import usersRouter from "../routes/users.js";
-import hamRouter from "../routes/ham.js";
+// import hamRouter from "../routes/ham.js";
 import houseRouter from "../routes/house.js";
 import playRouter from "../routes/play.js";
 import shopRouter from "../routes/shop.js";
@@ -60,7 +60,7 @@ app.use(express.static(path.join("public")));
 // router link enable, link connection
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/ham", hamRouter);
+// app.use("/ham", hamRouter);
 app.use("/house", houseRouter);
 app.use("/play", playRouter);
 app.use("/shop", shopRouter);
