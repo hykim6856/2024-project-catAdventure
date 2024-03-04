@@ -12,7 +12,7 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  res.send("respond with a resource");
+  res.render("index", { title: "햄버거 버튼" });
 });
 
 export default router;
