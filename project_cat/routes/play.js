@@ -6,7 +6,8 @@ const BAG = DB.models.tbl_bag;
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  res.send("respond with a resource");
+  // res.send("respond with a resource");
+  res.render("play.pug");
 });
 
 export default router;

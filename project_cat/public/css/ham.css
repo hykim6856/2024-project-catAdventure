@@ -1,0 +1,90 @@
+div.titles {
+  display: flex;
+  justify-content: flex-start;
+}
+div.navContain {
+  flex: 1;
+  nav.ham {
+    /* border: 1px solid black; */
+    display: inline-block;
+    ul.hamList {
+      margin: 0;
+      padding: 0;
+      list-style: none; /* ul 내부의 기본 스타일 제거 */
+    }
+    li {
+      margin: 3px;
+      padding: 10px 5px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      text-align: center;
+
+      transition: 0.3s;
+      &:hover {
+        background-color: #ccc;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+div.titleContain {
+  flex: 5;
+  display: flex; /* Flex 컨테이너 활성화 */
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  align-items: center; /* 세로 방향 중앙 정렬 */
+  /* border: 1px solid black; */
+  .titleImg {
+    width: 100%;
+    height: 100%;
+    max-width: 280px;
+    animation: resizeAnimation 1.3s infinite;
+  }
+}
+@keyframes resizeAnimation {
+  0%,
+  100% {
+    width: 280px; /* 가로 늘어남 */
+    height: 180px; /* 세로 줄어듦 */
+  }
+  25% {
+    width: 240px; /* 가로 줄어듦 */
+    height: 200px; /* 세로 늘어남 */
+  }
+  50% {
+    width: 280px; /* 가로 늘어남 */
+    height: 180px; /* 세로 줄어듦 */
+  }
+  75% {
+    width: 240px; /* 가로 줄어듦 */
+    height: 200px; /* 세로 늘어남 */
+  }
+}
+div.navContain {
+  flex: 1;
+}
+
+div.btn_box {
+  text-align: center;
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: center;
+  /* border: 1px solid #ccc; */
+  position: absolute;
+  bottom: 60px; /* 다른 footer와의 간격을 조절합니다. */
+  left: 0;
+  right: 0;
+
+  div {
+    cursor: pointer;
+
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+    transition: 0.3s;
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}

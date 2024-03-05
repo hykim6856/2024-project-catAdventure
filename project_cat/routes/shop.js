@@ -6,7 +6,7 @@ const BAG = DB.models.tbl_bag;
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  res.send("respond with a resource");
+  res.render("ham/achieve", { title: "상점" });
 });
 
 export default router;

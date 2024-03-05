@@ -1,0 +1,10 @@
+extends layout2
+
+block content
+    link(rel='stylesheet', href='/css/play.css')
+    script(src="/js/game.js")
+    canvas#gameCanvas(width='800', height='400')
+
+    // 바닥을 보여주는 역할을 하는 요소 추가
+    div.ground
+    

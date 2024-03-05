@@ -1,13 +1,23 @@
 extends layout2
 
 block content
+  link(rel="stylesheet", href="/css/ham.css")
   script(src="/js/ham.js")
-  div.mainTitle
-    //- 여기에 타이틀이미지 들어감
-  nav.ham 
-    ul 
-      li.cancleHam x
-      li.info 내정보
-      li.achieve 업적
-      li.rank 랭킹
-      li.setting 설정
+  header.mainHeader
+  div.titles
+    div.navContain
+      nav.ham 
+        ul.hamList
+          li.cancleHam x
+          li.info 정보
+          li.achieve 업적
+          li.rank 랭킹
+          li.setting 설정
+    div.titleContain
+      img.titleImg(src="/images/title.png")
+    div.navContain
+  div.btn_box
+    div.shop 상점
+    div.start 모험떠나기
+    div.home 아지트
+

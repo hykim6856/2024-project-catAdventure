@@ -6,7 +6,8 @@ const CAT = DB.models.tbl_cat;
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  res.render("house", { title: "아지트" });
+  // res.send("respond with a resource");
+  res.render("house.pug", { title: "아지트" });
 });
 
 export default router;

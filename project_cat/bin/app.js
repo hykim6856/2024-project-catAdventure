@@ -6,6 +6,19 @@
  * @see : nodejs + express 프로젝트에서 ES6+ 문법을 사용하기 위한 template
  */
 
+// const express = require("express");
+// const PORT = 3000;
+
+// app.use(express.static("public"));
+
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+
 // essential modules
 import express from "express";
 import createError from "http-errors";
@@ -49,6 +62,7 @@ app.disable("x-powered-by");
 // view engine setup
 app.set("views", path.join("views"));
 app.set("view engine", "pug");
+app.set("views", "./views");
 
 // middleWare enable
 app.use(logger("dev"));
