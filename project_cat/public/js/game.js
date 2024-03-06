@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const dino = {
     x: 10,
-    y: 200,
+    y: 400,
     width: 50,
     height: 50,
     jumpPower: 9,
@@ -18,13 +18,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let obstacles = [];
   let score = 0;
+  let s_score;
+  let obstacleTimer;
+
+  const adjustCanvasSize = () => {
+    canvas.style.width = "100%";
+    canvas.style.height = "100vh";
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  };
+
+  adjustCanvasSize();
+  window.addEventListener("resize", adjustCanvasSize);
+
+  const startObstacleTimer = () => {
+    if (obstacleTimer) {
+      clearInterval(obstacleTimer);
+    }
+    obstacleTimer = setInterval(() => {
+      obstacles.push({
+        x: canvas.width,
+        y: 418,
+        width: 15,
+        height: 35,
+      });
+    }, 2000);
+  };
 
   const update = () => {
     if (!dino.onGround) {
       dino.velocity += dino.gravity;
       dino.y += dino.velocity;
-      if (dino.y > 200) {
-        dino.y = 200;
+      if (dino.y > 400) {
+        dino.y = 400;
         dino.onGround = true;
       }
     }
@@ -38,20 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
         dino.y + dino.height > obstacle.y;
 
       if (hit) {
+        s_score = score;
         alert("Game Over!");
+        location.replace(`${s_score}`);
         restartGame();
         return false;
       }
 
-      if (obstacle.x + obstacle.width < 0) {
-        return false;
-      }
-
-      if (obstacle.x + obstacle.width === dino.x) {
+      // 점수 증가 조건 추가
+      if (obstacle.x + obstacle.width < dino.x && !obstacle.scored) {
         score++;
+        obstacle.scored = true; // 점수가 이미 증가된 장애물 표시
       }
 
-      return true;
+      return obstacle.x + obstacle.width > 0;
     });
 
     draw();
@@ -92,19 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  setInterval(() => {
-    obstacles.push({
-      x: canvas.width,
-      y: 220,
-      width: 15,
-      height: 35,
-    });
-  }, 2000);
-
   const restartGame = () => {
     obstacles = [];
     score = 0;
+    startObstacleTimer();
   };
 
+  startObstacleTimer();
   update();
 });

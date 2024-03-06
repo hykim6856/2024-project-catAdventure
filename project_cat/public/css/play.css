@@ -3,13 +3,33 @@ canvas#gameCanvas {
   top: 0;
   overflow: hidden;
   left: 0;
+  border: 1px solid rebeccapurple;
+}
+/* 캔버스 스타일 */
+#gameCanvas {
+  display: block; /* 화면에 꽉 차게 */
+  width: 90vw; /* 뷰포트 너비의 100% */
+  height: 90vh; /* 뷰포트 높이의 100% */
+  /* max-width: 800px;
+  max-height: 1600px;
+  min-width: 300px;
+  min-height: 700px; */
+  margin: auto; /* 중앙 정렬 */
+}
+
+/* 부모 요소(예: body)에 대한 스타일, 필요에 따라 조정 */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* 스크롤바 제거 */
 }
 
 .ground {
   position: absolute;
   bottom: 0px;
   width: 100%;
-  height: 450px; /* 바닥의 높이 조절 가능 */
+  height: 200px; /* 바닥의 높이 조절 가능 */
   background-color: #8bc34a; /* 바닥의 색상 설정 */
   /* z-index: 999; 바닥을 가장 위에 표시하기 위해 z-index 설정 */
 }

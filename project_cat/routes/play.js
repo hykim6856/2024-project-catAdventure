@@ -10,4 +10,18 @@ router.get("/", async (req, res, next) => {
   res.render("play.pug");
 });
 
+router.get("/:s_score", async (req, res, next) => {
+  const s_score = req.params.s_score;
+
+  try {
+    await DB.tbl_score.create({
+      s_score: s_score,
+      s_useq: "123",
+    });
+    return res.redirect("/play");
+  } catch (error) {
+    return res.json(error);
+  }
+});
+
 export default router;
