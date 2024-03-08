@@ -62,9 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (hit) {
         s_score = score;
-        alert("Game Over!");
-        location.replace(`play/${s_score}`);
-        restartGame();
+        document.getElementById("pauseMenu").style.display = "block";
         return false;
       }
 

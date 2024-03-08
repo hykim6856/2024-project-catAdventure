@@ -1,5 +1,19 @@
 extends ../layout
 
 block content
-  h1= 음
-  p Welcome to #{title}
+  link(rel="stylesheet", href="/css/shopmemo.css")
+  link(rel="stylesheet", href="/css/thema/shop_thema.css")
+  script(src="/js/setting/setting_thema.js")
+  script(src="/js/shopmemo.js")
+  div.main
+    div.listbox
+      table.cartlist
+        tbody 
+          if (RANKING && RANKING.length > 0) || (USER && USER.length > 0)
+            each item, index in USER
+              - const rankingItem = RANKING[index] || {} // 랭킹 정보가 있는 경우 해당 인덱스의 아이템을 가져오고, 없는 경우 빈 객체를 사용합니다.
+              tr
+                td.s_seq= item.s_seq 
+                td.s_score= item.s_score 
+                td.r_rank= rankingItem.r_rank
+                
