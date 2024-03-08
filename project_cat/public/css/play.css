@@ -33,3 +33,18 @@ body {
   background-color: #8bc34a; /* 바닥의 색상 설정 */
   /* z-index: 999; 바닥을 가장 위에 표시하기 위해 z-index 설정 */
 }
+#pauseMenu button {
+  display: block;
+  margin: 10px auto; /* 상자 안의 버튼을 중앙 정렬 */
+  padding: 10px;
+  width: 80%; /* 버튼 너비 설정 */
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+#pauseMenu button:hover {
+  background-color: #f2f2f2;
+}

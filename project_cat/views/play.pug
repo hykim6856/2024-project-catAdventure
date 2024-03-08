@@ -3,7 +3,13 @@ extends layout2
 block content
     link(rel='stylesheet', href='/css/play.css')
     script(src="/js/game.js")
+    script(src="/js/pause.js")
     canvas#gameCanvas
     //- 바닥을 보여주는 역할을 하는 요소 추가
     //- div.ground
     
+    button#pauseButton(style="position: absolute; top: 10px; right: 10px;") 일시정지
+    div#pauseMenu(style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);")
+        button#resumeButton 이어하기
+        button#newGameButton 새 게임 시작
+        button#returnTitleButton 타이틀로 돌아가기

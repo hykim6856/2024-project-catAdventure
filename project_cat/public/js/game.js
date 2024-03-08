@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
-
   const dinoImage = new Image();
-  dinoImage.src = "/images/cat.png"; // 이미지 경로 변경
-
+  dinoImage.src = "/images/cat.png";
   const dino = {
     x: 10,
     y: 400,
@@ -15,11 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     velocity: 0,
     onGround: true,
   };
-
   let obstacles = [];
   let score = 0;
   let s_score;
   let obstacleTimer;
+  let isPaused = false;
 
   const adjustCanvasSize = () => {
     canvas.style.width = "100%";
@@ -27,9 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
   };
-
-  adjustCanvasSize();
-  window.addEventListener("resize", adjustCanvasSize);
 
   const startObstacleTimer = () => {
     if (obstacleTimer) {
@@ -46,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const update = () => {
+    if (isPaused) return;
+
     if (!dino.onGround) {
       dino.velocity += dino.gravity;
       dino.y += dino.velocity;
@@ -66,15 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (hit) {
         s_score = score;
         alert("Game Over!");
-        location.replace(`${s_score}`);
+        location.replace(`play/${s_score}`);
         restartGame();
         return false;
       }
 
-      // 점수 증가 조건 추가
       if (obstacle.x + obstacle.width < dino.x && !obstacle.scored) {
         score++;
-        obstacle.scored = true; // 점수가 이미 증가된 장애물 표시
+        obstacle.scored = true;
       }
 
       return obstacle.x + obstacle.width > 0;
@@ -119,10 +115,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const restartGame = () => {
+    isPaused = false;
     obstacles = [];
     score = 0;
     startObstacleTimer();
   };
+
+  const pauseGame = () => {
+    isPaused = true;
+    document.getElementById("pauseMenu").style.display = "block";
+  };
+
+  const resumeGame = () => {
+    isPaused = false;
+    document.getElementById("pauseMenu").style.display = "none";
+    requestAnimationFrame(update);
+  };
+
+  const returnToTitle = () => {
+    window.location.href = "/";
+  };
+
+  document
+    .getElementById("pauseButton")
+    .addEventListener("click", pauseGame);
+
+  document
+    .getElementById("resumeButton")
+    .addEventListener("click", resumeGame);
+
+  document
+    .getElementById("newGameButton")
+    .addEventListener("click", () => {
+      restartGame();
+      resumeGame();
+    });
+
+  document
+    .getElementById("returnTitleButton")
+    .addEventListener("click", returnToTitle);
+
+  adjustCanvasSize();
+  window.addEventListener("resize", adjustCanvasSize);
 
   startObstacleTimer();
   update();

@@ -4,6 +4,7 @@ use catpdb;
 
 -- CREATE TABLE [테이블명]([물리테이블]);
 -- SELECT * FROM [테이블명]
+ SELECT * FROM tbl_score;
 
 -- CREATE VIEW view_plist AS
 -- (SELECT [칼럼명1] as [별명2], [칼럼명2] as [별명2], [칼럼명3] as [별명4], [칼럼명5] as [별명5]
@@ -31,6 +32,9 @@ u_fish	INT		,
 u_role	VARCHAR(35)		,
 u_level	INT	NOT NULL	,
 u_exp	INT		);
+
+INSERT INTO tbl_user (u_seq, u_id, u_pw, u_name) VALUES (123, '123', '123', '123', );
+
 
 CREATE TABLE tbl_score(
 s_seq	INT	AUTO_INCREMENT	PRIMARY KEY,
