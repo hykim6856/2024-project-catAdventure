@@ -105,10 +105,17 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = "black";
     ctx.font = "20px Arial";
     ctx.fillText("Score: " + score, 10, 30);
+    ctx.fillText("Highest Score: " + highestScore, 10, 20);
   };
 
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space" && dino.onGround) {
+      dino.velocity = -dino.jumpPower;
+      dino.onGround = false;
+    }
+  });
+  window.addEventListener("click", () => {
+    if (dino.onGround) {
       dino.velocity = -dino.jumpPower;
       dino.onGround = false;
     }
@@ -139,18 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("pauseButton")
     .addEventListener("click", pauseGame);
-
   document
     .getElementById("resumeButton")
     .addEventListener("click", resumeGame);
-
   document
     .getElementById("newGameButton")
     .addEventListener("click", () => {
-      restartGame();
-      resumeGame();
+      window.location.reload(); // 페이지 다시 로드
     });
-
   document
     .getElementById("returnTitleButton")
     .addEventListener("click", returnToTitle);

@@ -8,8 +8,17 @@ const USER = DB.models.tbl_user;
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  // res.send("respond with a resource");
-  res.render("play.pug");
+  const highestScore = await SCORE.findOne({
+    attributes: [
+      [
+        DB.sequelize.fn("MAX", DB.sequelize.col("s_score")),
+        "highestScore",
+      ],
+    ],
+    where: { s_useq: 123 },
+  });
+
+  res.render("play.pug", { highestScore: highestScore.highestScore });
 });
 
 router.get("/:s_score", async (req, res, next) => {
@@ -19,15 +28,8 @@ router.get("/:s_score", async (req, res, next) => {
     s_score: s_score,
     s_useq: 123,
   });
-  // try {
-  //   await DB.tbl_score.create({
-  //     s_score: s_score,
-  //     s_useq: 123,
-  //   });
-  //   return res.redirect("/play");
-  // } catch (error) {
-  //   return res.redirect("/play");
-  // }
+
+  res.redirect("/play");
 });
 
 export default router;
