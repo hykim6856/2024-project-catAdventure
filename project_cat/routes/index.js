@@ -29,7 +29,9 @@ router.get("/info", async (req, res, next) => {
 router.get("/rank", async (req, res, next) => {
   try {
     // 모든 SCORE 레코드를 검색합니다.
-    const row1 = await SCORE.findAll();
+    const row1 = await SCORE.findAll({
+      limit: 1,
+    });
 
     // 사용자의 고유 식별자를 사용하여 USER 레코드를 검색합니다.
     const row2 = await USER.findByPk(123); // 이 부분에서 사용자의 식별자를 정확히 지정해야 합니다.
