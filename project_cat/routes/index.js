@@ -27,7 +27,23 @@ router.get("/info", async (req, res, next) => {
 
 //==============================
 router.get("/rank", async (req, res, next) => {
-  res.render("ham/rank", { title: "랭킹" });
+  try {
+    // 모든 SCORE 레코드를 검색합니다.
+    const row1 = await SCORE.findAll();
+
+    // 사용자의 고유 식별자를 사용하여 USER 레코드를 검색합니다.
+    const row2 = await USER.findByPk(123); // 이 부분에서 사용자의 식별자를 정확히 지정해야 합니다.
+
+    // 렌더링할 데이터를 템플릿에 전달합니다.
+    res.render("ham/rank", {
+      title: "랭킹",
+      RANKING: row1,
+      USER: row2,
+    });
+  } catch (err) {
+    // 오류가 발생한 경우 에러 핸들링
+    next(err);
+  }
 });
 
 //==============================
