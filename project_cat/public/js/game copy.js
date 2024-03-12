@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let s_score;
   let obstacleTimer;
   let isPaused = false;
-  let obstacleSpeed = 5;
-  let obstacleInterval = 2000;
 
   const adjustCanvasSize = () => {
     canvas.style.width = "100%";
@@ -39,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         width: 15,
         height: 35,
       });
-    }, obstacleInterval);
+    }, 2000);
   };
 
   const update = () => {
@@ -55,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     obstacles = obstacles.filter((obstacle) => {
-      obstacle.x -= obstacleSpeed;
+      obstacle.x -= 5;
       const hit =
         dino.x < obstacle.x + obstacle.width &&
         dino.x + dino.width > obstacle.x &&
@@ -81,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
     requestAnimationFrame(update);
   };
-
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (dinoImage.complete) {
@@ -164,10 +161,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startObstacleTimer();
   update();
-
-  // 게임 진행 속도 및 장애물 생성 주기 조절
-  setInterval(() => {
-    obstacleSpeed *= 1.2; // 20%씩 속도 증가
-    obstacleInterval *= 0.8; // 20%씩 주기 감소
-  }, 10000); // 10초마다 속도와 주기 변경
 });
