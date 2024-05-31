@@ -33,8 +33,9 @@ u_role	VARCHAR(35)		,
 u_level	INT	NOT NULL	,
 u_exp	INT		);
 
-INSERT INTO tbl_user (u_seq, u_id, u_pw, u_name) VALUES (123, '123', '123', '123', );
-
+INSERT INTO tbl_user (u_seq, u_id, u_pw, u_name, u_level) VALUES (123, '123', '123', '123', 1);
+INSERT INTO tbl_user (u_seq, u_id, u_pw, u_name, u_level) VALUES (124, '124', '124', '테스트용', 1);
+SELECT * FROM tbl_user;
 
 CREATE TABLE tbl_score(
 s_seq	INT	AUTO_INCREMENT	PRIMARY KEY,
@@ -71,12 +72,14 @@ f_ulevel	INT	NOT NULL	,
 u_best	INT		,
 f_ox	INT		,
 f_useq	INT	NOT NULL	);
+
 CREATE TABLE tbl_achieve(
 a_seq	INT	AUTO_INCREMENT	PRIMARY KEY,
 a_name	VARCHAR(125)	NOT NULL	,
 a_quan	INT		,
 a_ox	INT		,
 a_useq	INT	NOT NULL	);
+
 CREATE TABLE tbl_item(
 i_seq	INT	AUTO_INCREMENT PRIMARY KEY,
 i_name	VARCHAR(125)	NOT NULL,

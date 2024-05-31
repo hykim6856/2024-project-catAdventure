@@ -1,21 +1,21 @@
 extends ../layout
 
 block content
-  link(rel="stylesheet", href="/css/shopmemo.css")
-  link(rel="stylesheet", href="/css/thema/shop_thema.css")
-  script(src="/js/setting/setting_thema.js")
-  script(src="/js/shopmemo.js")
+  link(rel="stylesheet", href="/css/rank.css")
+  //- link(rel="stylesheet", href="/css/thema/shop_thema.css")
+  //- script(src="/js/setting/setting_thema.js")
+  //- script(src="/js/shopmemo.js")
   div.main
     div.listbox
       table.cartlist
         tbody 
-          if (USER && USER.length > 0)
-            each info in USER
+          tr 
+            th 등수
+            th 닉네임
+            th 점수
+          if (USERS && USERS.length > 0)
+            each info, index in USERS
               tr 
-                td.u_seq= info.u_seq
-          if (RANKING && RANKING.length > 0) 
-            each score in RANKING 
-              tr
-                td.s_score= score.s_score 
-
-                
+                td.seq= index + 1
+                td.u_name= info.u_name
+                td.u_best= info.u_best

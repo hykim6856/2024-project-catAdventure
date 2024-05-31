@@ -6,10 +6,13 @@ block content
     #highestScore
         if HIGHSCORE.length > 0
             each item in HIGHSCORE
+                p ` best score : 
                 p= item.u_best
         else
             p 
     canvas#gameCanvas
+    div.gameBackground
+        img.titleImg(src="/images/bg.png")
     
     button#pauseButton(style="position: absolute; top: 10px; right: 10px;") 일시정지
     div#pauseMenu(style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);")

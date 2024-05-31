@@ -1,8 +1,10 @@
 extends layout
 
 block content
+  script(src="/js/home.js")
   link(rel="stylesheet", href="/css/home.css")
-  h1= 음
   div.home
-  img(src="/images/cathome.png", alt="dsf")
- 
+    img(src="/images/home.png", alt="dsf", id="mainImage")
+  div.btn_box
+    div.shop 밥주기
+    div.start 쓰다듬기

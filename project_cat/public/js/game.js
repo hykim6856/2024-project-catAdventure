@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
+  const obstacleImage = new Image();
+  obstacleImage.src = "/images/ob.png";
   const dinoImage = new Image();
   dinoImage.src = "/images/cat.png";
   const dino = {
@@ -94,16 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
+    // 장애물 이미지를 그리기
     obstacles.forEach((obstacle) => {
-      ctx.fillStyle = "red";
-      ctx.fillRect(
+      ctx.drawImage(
+        obstacleImage,
         obstacle.x,
         obstacle.y,
         obstacle.width,
         obstacle.height
       );
     });
-
     ctx.fillStyle = "black";
     ctx.font = "20px Arial";
     ctx.fillText("Score: " + score, 10, 30);

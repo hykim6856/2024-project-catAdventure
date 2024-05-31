@@ -1,0 +1,28 @@
+table {
+  margin: 20px auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+  border-radius: 10px;
+  width: 80%;
+}
+
+tr {
+  &:hover {
+    background-color: inherit;
+  }
+}
+td,
+th {
+  padding: 12px 16px;
+  text-align: center;
+}
+
+tr {
+  margin: 3px 0;
+  /* background-color: #f4f4f4; */
+  border-bottom: 1px solid #85858545;
+}
+tr:hover {
+  cursor: pointer;
+  /* background-color: #e7e5e5; */
+}

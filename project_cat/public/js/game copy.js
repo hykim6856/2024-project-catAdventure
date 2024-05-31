@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
   const ctx = canvas.getContext("2d");
+
   const dinoImage = new Image();
-  dinoImage.src = "/images/cat.png";
+  dinoImage.src = "/images/cat.png"; // 공룡 이미지 로드
+  const obstacleImage = new Image();
+  obstacleImage.src = "/images/ob.png"; // 장애물 이미지 로드
+
   const dino = {
     x: 10,
     y: 400,
@@ -13,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     velocity: 0,
     onGround: true,
   };
+
   let obstacles = [];
   let score = 0;
   let s_score;
@@ -27,22 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const startObstacleTimer = () => {
-    if (obstacleTimer) {
-      clearInterval(obstacleTimer);
-    }
+    if (obstacleTimer) clearInterval(obstacleTimer);
     obstacleTimer = setInterval(() => {
       obstacles.push({
         x: canvas.width,
-        y: 418,
-        width: 15,
-        height: 35,
+        y: 418, // 장애물의 y 위치 조정
+        width: 50, // 이미지에 맞게 장애물 크기 조정
+        height: 50, // 이미지에 맞게 장애물 크기 조정
+        image: obstacleImage, // 장애물 이미지 추가
       });
     }, 2000);
   };
 
   const update = () => {
     if (isPaused) return;
-
     if (!dino.onGround) {
       dino.velocity += dino.gravity;
       dino.y += dino.velocity;
@@ -53,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     obstacles = obstacles.filter((obstacle) => {
-      obstacle.x -= 5;
+      obstacle.x -= 5; // 장애물 이동 속도
       const hit =
         dino.x < obstacle.x + obstacle.width &&
         dino.x + dino.width > obstacle.x &&
@@ -79,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
     requestAnimationFrame(update);
   };
+
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (dinoImage.complete) {
@@ -92,13 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     obstacles.forEach((obstacle) => {
-      ctx.fillStyle = "red";
-      ctx.fillRect(
-        obstacle.x,
-        obstacle.y,
-        obstacle.width,
-        obstacle.height
-      );
+      if (obstacle.image.complete) {
+        // 장애물 이미지 그리기
+        ctx.drawImage(
+          obstacle.image,
+          obstacle.x,
+          obstacle.y,
+          obstacle.width,
+          obstacle.height
+        );
+      }
     });
 
     ctx.fillStyle = "black";
@@ -112,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dino.onGround = false;
     }
   });
+
   window.addEventListener("click", () => {
     if (dino.onGround) {
       dino.velocity = -dino.jumpPower;

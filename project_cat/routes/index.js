@@ -1,6 +1,7 @@
 import express from "express";
 import DB from "../models/index.js";
 import { upLoad } from "../modules/file_upload.js";
+import { Op } from "sequelize";
 
 const USER = DB.models.tbl_user;
 const BAG = DB.models.tbl_bag;
@@ -29,18 +30,18 @@ router.get("/info", async (req, res, next) => {
 router.get("/rank", async (req, res, next) => {
   try {
     // 모든 SCORE 레코드를 검색합니다.
-    const row1 = await SCORE.findAll({
-      limit: 1,
+    const rows = await USER.findAll({
+      where: {
+        u_best: {
+          [Op.ne]: null, // u_best가 null이 아닌 것을 찾음
+        },
+      },
     });
-
-    // 사용자의 고유 식별자를 사용하여 USER 레코드를 검색합니다.
-    const row2 = await USER.findByPk(123); // 이 부분에서 사용자의 식별자를 정확히 지정해야 합니다.
 
     // 렌더링할 데이터를 템플릿에 전달합니다.
     res.render("ham/rank", {
       title: "랭킹",
-      RANKING: row1,
-      USER: row2,
+      USERS: rows,
     });
   } catch (err) {
     // 오류가 발생한 경우 에러 핸들링
